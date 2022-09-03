@@ -73,7 +73,7 @@ function App() {
     }, [upload])
 
     useEffect(() => {
-        setData(order, 5, (page-1)*5, setLinkList, token)
+        setData(order, 5, (page-1)*5, setLinkList, token, dispatch)
     }, [page, upload, order])
 
     const handleExit = (e) => {

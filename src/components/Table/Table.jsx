@@ -9,7 +9,7 @@ import 'animate.css';
 
 const Table = (props) => {
     const { data } = props
-
+    const isLoading = useSelector(state=>state.linklist.loading)
     const order = useSelector(state=>state.linklist.order)
     const dispatch = useDispatch()
 
@@ -68,6 +68,11 @@ const Table = (props) => {
                 }
             })
         })
+    }
+
+    const getLoading = (isLoading) => {
+        if (isLoading === true) return '...'
+        else return ''
     }
 
     const getSymbol = (type) => {
@@ -144,6 +149,7 @@ const Table = (props) => {
             <tbody>
             {getTable}
             </tbody>
+            <tfoot>{getLoading(isLoading)}</tfoot>
         </table>
     );
 };

@@ -1,4 +1,5 @@
 import {setAuthorised, setError, setLoginError, setToken} from "./redux/authorisationReducer";
+import {setLoading} from "./redux/linklistReducer";
 
 
 export const signUp = async (login, password, dispatch) => {
@@ -35,7 +36,8 @@ export const logIn = async (login, password, dispatch) => {
     }
 }
 
-export const setData = async (order, limit, offset, setter, token) => {
+export const setData = async (order, limit, offset, setter, token, dispatch) => {
+    dispatch(setLoading(true))
     let response = await fetch(`http://79.143.31.216/statistics?order=${order}&offset=${offset}&limit=${limit}`, {
         headers: {
             Authorization:`Bearer ${token}`
@@ -43,12 +45,11 @@ export const setData = async (order, limit, offset, setter, token) => {
     })
     if (response.ok) {
         let json = await response.json();
-        console.log(json)
-        console.log(order)
         setter(json)
     } else {
         console.log(response)
     }
+    dispatch(setLoading(false))
 }
 
 export const setPageNum = async (setter, token) => {
