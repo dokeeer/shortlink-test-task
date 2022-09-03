@@ -14,8 +14,9 @@
 
 .content-header {
     font-size: 24px;
-    margin-bottom:30px;
     font-weight: bold;
+    position: absolute;
+    top:50px;
 }
 
 .app-error {
@@ -82,5 +83,22 @@
 @media (max-width: 1200px) {
     .main-content {
         width: 100%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .main-content {
+        height: 100%;
+    }
+}
+
+@media (max-width: 350px) {
+    .link_form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .link-creator_submit {
+        margin-left:0;
     }
 }

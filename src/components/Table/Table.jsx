@@ -3,9 +3,9 @@ import './Table.css'
 import {useDispatch, useSelector} from "react-redux";
 import {setOrder} from "../../redux/linklistReducer";
 import copy from '../../assets/copy.svg'
-import NotificationContainer from "react-notifications/lib/NotificationContainer";
-import createNotification from "../../helpfulFunctions/Notification";
-import 'react-notifications/lib/notifications.css';
+import { Store } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+import 'animate.css';
 
 const Table = (props) => {
     const { data } = props
@@ -30,6 +30,20 @@ const Table = (props) => {
             active: false
         }
     ])
+
+    const copyLinkNotification = (link) => {
+        Store.addNotification({
+            title: 'Your link was copied!',
+            message: link,
+            type: 'success',                         // 'default', 'success', 'info', 'warning'
+            container: 'top-right',                // where to position the notifications
+            animationIn: ["animated", "fadeIn"],     // animate.css classes that's applied
+            animationOut: ["animated", "fadeOut"],   // animate.css classes that's applied
+            dismiss: {
+                duration: 3000
+            }
+        })
+    }
     useEffect(()=>{
         const orderObject = (orderName.filter(obj=>{
             return obj.active === true
@@ -90,6 +104,7 @@ const Table = (props) => {
                     src={copy}
                     onClick={()=> {
                         copyLink(`http://79.143.31.216/s/${obj.short}`)
+                        copyLinkNotification(`http://79.143.31.216/s/${obj.short}`)
                     }
                     }/> </td>
             <td className='row-elem'>{obj.counter}</td>
@@ -97,7 +112,6 @@ const Table = (props) => {
     )
 
     return (
-        <div>
         <table>
             <thead>
             <tr>
@@ -114,7 +128,7 @@ const Table = (props) => {
                         className='nocopy'
                         onClick={()=>changeOrder('short')}
                     >
-                        Short link {getSymbol('short')}
+                        Short {getSymbol('short')}
                     </span>
                 </th>
                 <th className='table-counter'>
@@ -131,8 +145,6 @@ const Table = (props) => {
             {getTable}
             </tbody>
         </table>
-
-        </div>
     );
 };
 

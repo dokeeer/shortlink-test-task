@@ -1,15 +1,13 @@
 import './App.css';
 import {useEffect, useState} from "react";
 import Table from "./components/Table/Table";
-import {createTheme, Pagination} from "@mui/material";
+import {Pagination} from "@mui/material";
 import {makeLink, setData, setPageNum} from "./asyncFunctions";
 import logoutIfNoToken from "./helpfulFunctions/logoutIfNoToken";
 import {useNavigate} from "react-router-dom";
 import logout from "./helpfulFunctions/logout";
 import {useDispatch, useSelector} from "react-redux";
-import {blue} from "@mui/material/colors";
-import NotificationContainer from "react-notifications/lib/NotificationContainer";
-
+import {ReactNotifications} from "react-notifications-component";
 function App() {
     const user = localStorage.getItem('user')
     const [upload, setUpload] = useState(0)
@@ -128,6 +126,7 @@ function App() {
                         className='pagination'/>
                 </div>
             </div>
+            <ReactNotifications />
         </div>
     );
 }

@@ -30,6 +30,7 @@ td {
 
 .row-elem {
     background: #f3f7f8;
+    position: relative;
 }
 thead {
     font-weight:bold;
@@ -54,5 +55,26 @@ thead {
 
 .copy-img {
     height:15px;
-    padding-left :15px;
+    position: absolute;
+    left: 75px;
+}
+
+.table-link:hover {
+    color:#21c2f8;
+}
+
+@media (max-width: 1050px) {
+    table {
+        width:100%;
+    }
+    .table-target {
+        width:65%
+    }
+}
+
+@media (max-width: 650px) {
+    .copy-img {
+        top:30px;
+        left: 10px;
+    }
 }

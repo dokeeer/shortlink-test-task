@@ -4,20 +4,20 @@ import './index.css';
 import App from './App';
 import {Provider} from "react-redux";
 import {store} from "./redux";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {HashRouter, Route, Routes} from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
                 <Route path='/' element={<LoginPage />}/>
                 <Route path='/signup' element={<SignupPage />}/>
                 <Route path='/my-links' element={<App/>}/>
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     </Provider>
 );
 
