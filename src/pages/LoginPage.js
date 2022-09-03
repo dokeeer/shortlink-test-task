@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './LoginPage.css'
+import './AuthPage.css'
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {logIn} from "../asyncFunctions";
@@ -10,6 +10,7 @@ const LoginPage = () => {
 
     const isAuthorised = useSelector(state=>state.authorisation.authorised)
     const token = useSelector(state=>state.authorisation.token)
+    const loginError = useSelector(state=>state.authorisation.loginError)
     const navigate = useNavigate()
 
     const [userInfo, setUserInfo] = useState({
@@ -53,11 +54,14 @@ const LoginPage = () => {
 
 
     return (
-        <div className='login-page'>
-            <div className='login-formholder'>
+        <div className='auth-page'>
+            <div className='auth-formholder'>
                 <div className='form_prompt'>
-                    Authorisation
+                    <span>Authorisation</span>
                 </div>
+                {loginError
+                    ?<div className='login-error'>Password or/and login is incorrect</div>
+                    :''}
                 <form className='login-form' onSubmit={handleSubmit}>
                     <input onChange={(e) => handleFormChange(e, 'username')} type='text' className='form_input' placeholder='Login'/>
                     <input onChange={(e) => handleFormChange(e, 'password')} type='password' className='form_input' placeholder='Password'/>
@@ -67,8 +71,8 @@ const LoginPage = () => {
                     </div>
                     <input type='submit' className='form_submit' value='Log in'/>
                 </form>
-                <div className='signup-link'>
-                    <a href='/signup'>Sign up</a>
+                <div className='signup_link-holder'>
+                    <a className='signup_link' href='/signup'>Sign up</a>
                 </div>
             </div>
         </div>

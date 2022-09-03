@@ -1,4 +1,4 @@
-import {setAuthorised, setError, setToken} from "./redux/authorisationReducer";
+import {setAuthorised, setError, setLoginError, setToken} from "./redux/authorisationReducer";
 
 
 export const signUp = async (login, password, dispatch) => {
@@ -27,7 +27,10 @@ export const logIn = async (login, password, dispatch) => {
         let json = await response.json();
         dispatch(setAuthorised(true))
         dispatch(setToken(json.access_token))
+        dispatch(setLoginError(false))
+        localStorage.setItem('user', login)
     } else {
+        dispatch(setLoginError(true))
         dispatch(setAuthorised(false))
     }
 }
@@ -76,6 +79,7 @@ export const makeLink = async (link, token, setter) => {
         let json = await response.json();
         setter(false)
     } else {
+        console.log(response)
         setter(true)
     }
 }

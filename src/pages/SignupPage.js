@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './LoginPage.css'
+import './AuthPage.css'
 import {signUp} from "../asyncFunctions";
 import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from 'react-router-dom'
@@ -43,17 +43,25 @@ const SignupPage = () => {
         else setMatchError(true)
     }
 
+    const handleBack = (e) => {
+        e.preventDefault()
+        navigate('/')
+    }
+
     React.useEffect(()=>{
         redirect(navigate)
     }, [])
 
 
     return (
-        <div className='login-page'>
-            <div className='login-formholder'>
+        <div className='auth-page'>
+            <div className='auth-formholder'>
                 { !success
                     ?
                     <div>
+                        <button onClick={handleBack} className='back-login'>
+                            ← Login
+                        </button>
                         <div className='form_prompt'>
                             Sign up
                         </div>

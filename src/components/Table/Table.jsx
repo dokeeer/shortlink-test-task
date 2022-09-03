@@ -2,16 +2,14 @@ import React, {useEffect, useState} from 'react';
 import './Table.css'
 import {useDispatch, useSelector} from "react-redux";
 import {setOrder} from "../../redux/linklistReducer";
+import copy from '../../assets/copy.svg'
+import NotificationContainer from "react-notifications/lib/NotificationContainer";
+import createNotification from "../../helpfulFunctions/Notification";
+import 'react-notifications/lib/notifications.css';
 
 const Table = (props) => {
     const { data } = props
-    const getTable = data.map(obj=>
-        <tr key = {obj.id}>
-            <th scope="row">{obj.target}</th>
-            <td>{obj.short}</td>
-            <td>{obj.counter}</td>
-        </tr>
-    )
+
     const order = useSelector(state=>state.linklist.order)
     const dispatch = useDispatch()
 
@@ -19,12 +17,12 @@ const Table = (props) => {
         {
             type: 'short',
             asc: false,
-            active: true
+            active: false
         },
         {
             type: 'target',
             asc: false,
-            active: false
+            active: true
         },
         {
             type: 'counter',
@@ -66,18 +64,66 @@ const Table = (props) => {
         return orderObject.asc === true ? '↑' : '↓'
     }
 
+    const copyLink = (link) => {
+        navigator.clipboard.writeText(link)
+    }
+
+    const getTable = data.map(obj=>
+        <tr key = {obj.id}>
+            <th className='table-small row-elem' scope="row">
+                <a
+                    href={obj.target}
+                    className='table-link'
+                >
+                    <div className='table-div'>
+                    {obj.target}
+                    </div></a>
+            </th>
+            <td className='row-elem'>
+                <a
+                    href={`http://79.143.31.216/s/${obj.short}`}
+                    className='table-link'
+                >
+                    {obj.short}</a>
+                <img
+                    className='copy-img'
+                    src={copy}
+                    onClick={()=> {
+                        copyLink(`http://79.143.31.216/s/${obj.short}`)
+                    }
+                    }/> </td>
+            <td className='row-elem'>{obj.counter}</td>
+        </tr>
+    )
+
     return (
+        <div>
         <table>
             <thead>
             <tr>
-                <th onClick={()=>changeOrder('target')}>
-                    Full link {getSymbol('target')}
+                <th className='table-target'>
+                    <span
+                        className='nocopy'
+                        onClick={()=>changeOrder('target')}
+                    >
+                        Full link {getSymbol('target')}
+                    </span>
                 </th>
-                <th onClick={()=>changeOrder('short')}>
-                    Short link {getSymbol('short')}
+                <th className='table-short'>
+                    <span
+                        className='nocopy'
+                        onClick={()=>changeOrder('short')}
+                    >
+                        Short link {getSymbol('short')}
+                    </span>
                 </th>
-                <th onClick={()=>changeOrder('counter')}>
-                    Usages {getSymbol('counter')}
+                <th className='table-counter'>
+                    <span
+                        className='nocopy'
+                        onClick={()=>changeOrder('counter')}
+                    >
+                        Usages {getSymbol('counter')}
+                    </span>
                 </th>
             </tr>
             </thead>
@@ -85,6 +131,8 @@ const Table = (props) => {
             {getTable}
             </tbody>
         </table>
+
+        </div>
     );
 };
 

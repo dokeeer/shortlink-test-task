@@ -1,17 +1,58 @@
 table {
+    margin-top: 50px;
     text-align: left;
     border-collapse: separate;
     border-spacing: 5px;
-    background: #ECE9E0;
-    color: #656665;
-    border: 16px solid #ECE9E0;
+    background: #bdc3c7;
+    color: #202020;
+    border: 16px solid #bdc3c7;
     border-radius: 20px;
+    width:95%;
+    height: 400px;
+    table-layout: fixed;
+
 }
+
+.table-div {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 th {
     font-size: 18px;
     padding: 10px;
 }
 td {
-    background: #F5D7BF;
     padding: 10px;
+}
+
+.row-elem {
+    background: #f3f7f8;
+}
+thead {
+    font-weight:bold;
+}
+
+.nocopy {
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+}
+
+.table-target {
+    width: 75%;
+}
+
+.table-link {
+    text-decoration: none;
+    color: #227ebb
+}
+
+.copy-img {
+    height:15px;
+    padding-left :15px;
 }

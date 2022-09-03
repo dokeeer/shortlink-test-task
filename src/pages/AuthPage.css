@@ -1,0 +1,121 @@
+.auth-page {
+    height: 100vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto';
+}
+
+.auth-formholder {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 1px solid gray;
+    width: 500px;
+    height: 450px;
+    flex-direction: column;
+    border-radius: 15px;
+    background: #f3f7f8;
+    position: relative;
+}
+
+.form_prompt {
+    text-align: center;
+    padding: 15% 5% 10% 5%;
+    font-size: 30px;
+}
+
+.signup_link-holder {
+    margin-top: 30px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_input {
+    margin-bottom: 25px;
+    height: 30px;
+    width: 250px;
+    font-size:16px;
+    border-radius: 5px;
+    border: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.form_input::-webkit-input-placeholder {
+    text-align: center;
+}
+
+.form_input:-moz-placeholder {
+    text-align: center;
+}
+
+.form_submit {
+    margin-top: 20px;
+    width: 150px;
+    height: 30px;
+    border:1px solid black;
+    border-radius: 5px;
+    background: #21c2f8;
+    font-size: 18px;
+}
+
+.form_submit:hover {
+    cursor: pointer;
+}
+
+.r:hover {
+    cursor: pointer;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.remember_checkbox:hover {
+    cursor: pointer;
+
+}
+
+.signup_link {
+    text-decoration: none;
+    font-size:19px;
+    color:#476167
+}
+
+.error {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size:18px;
+    color: lightcoral;
+}
+
+.redirect {
+    text-align: center;
+}
+
+.back-login {
+    margin-top: 20px;
+    height: 30px;
+    border:1px solid black;
+    border-radius: 5px;
+    background: #21c2f8;
+    font-size: 18px;
+    position: absolute;
+    top:0;
+    left:20px;
+}
+
+.back-login:hover {
+    cursor: pointer;
+}
+
+.login-error {
+    color: lightcoral;
+    position: absolute;
+    top: 160px;
+}

@@ -2,7 +2,7 @@ import {createReducer} from "@reduxjs/toolkit";
 import {createAction} from "@reduxjs/toolkit";
 
 const initialState = {
-    order: 'asc_short'
+    order: 'desc_target'
 }
 
 export const setOrder = createAction('SET_ORDER')

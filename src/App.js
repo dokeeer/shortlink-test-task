@@ -1,17 +1,48 @@
 import './App.css';
 import {useEffect, useState} from "react";
 import Table from "./components/Table/Table";
-import {Pagination} from "@mui/material";
+import {createTheme, Pagination} from "@mui/material";
 import {makeLink, setData, setPageNum} from "./asyncFunctions";
 import logoutIfNoToken from "./helpfulFunctions/logoutIfNoToken";
 import {useNavigate} from "react-router-dom";
 import logout from "./helpfulFunctions/logout";
 import {useDispatch, useSelector} from "react-redux";
+import {blue} from "@mui/material/colors";
+import NotificationContainer from "react-notifications/lib/NotificationContainer";
 
 function App() {
-
+    const user = localStorage.getItem('user')
     const [upload, setUpload] = useState(0)
-    const [linkList, setLinkList] = useState([])
+    const [linkList, setLinkList] = useState([{
+        "id": 203,
+        "short": "---",
+        "target": "---",
+        "counter": 0
+        },
+        {
+            "id": 744,
+            "short": "---",
+            "target": "---",
+            "counter": 0
+        },
+        {
+            "id": 84,
+            "short": "---",
+            "target": "---",
+            "counter": 0
+        },
+        {
+            "id": 800,
+            "short": "---",
+            "target": "---",
+            "counter": 0
+        },
+        {
+            "id": 85,
+            "short": "---",
+            "target": "---",
+            "counter": 0
+        }])
     const [page, setPage] = useState(1)
     const [pageNumber, setPageNumber] = useState(0)
     const [sendLink, setSendLink] = useState('')
@@ -67,29 +98,34 @@ function App() {
         <div className="app">
             <div className='main-content'>
                 <button className='exit' onClick={handleExit}>
-                    exit
+                    Exit
                 </button>
                 <div className='content-header'>
-                    User
+                    Links of user {user}
                 </div>
                 <div className='content_link-creator'>
-                    <form className='link_form' onSubmit={handleSubmit}>
-                        <input value={sendLink} onChange={handleFormChange} type='text' className='form_text'/>
-                        <input type='submit' value='Get link'/>
-                    </form>
                     {
                         error
-                        ?<div className='app-error'>
-                            Link is incorrect
-                         </div>
-                        : ''
+                            ?<div className='app-error'>
+                                Link is incorrect
+                            </div>
+                            : ''
                     }
+                    <form className='link_form' onSubmit={handleSubmit}>
+                        <input placeholder='http://...' value={sendLink} onChange={handleFormChange} type='text' className='link-creator_input'/>
+                        <input type='submit' value='Squeeze link' className='link-creator_submit'/>
+                    </form>
+
                 </div>
                 <div className='table-holder'>
                     <Table data={linkList}/>
                 </div>
                 <div className='table_pagination'>
-                    <Pagination onChange={handlePageChange} count={pageNumber} color="primary" />
+                    <Pagination
+                        onChange={handlePageChange}
+                        count={pageNumber}
+                        color="primary"
+                        className='pagination'/>
                 </div>
             </div>
         </div>
