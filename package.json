@@ -1,6 +1,5 @@
 {
   "name": "shortlink-test-task",
-  "homepage": "http://dokeeer.github.io/shortlink-test-task",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -8,39 +8,11 @@ import {useNavigate} from "react-router-dom";
 import logout from "./helpfulFunctions/logout";
 import {useDispatch, useSelector} from "react-redux";
 import {ReactNotifications} from "react-notifications-component";
+
 function App() {
     const user = localStorage.getItem('user')
     const [upload, setUpload] = useState(0)
-    const [linkList, setLinkList] = useState([{
-        "id": 203,
-        "short": "---",
-        "target": "---",
-        "counter": 0
-        },
-        {
-            "id": 744,
-            "short": "---",
-            "target": "---",
-            "counter": 0
-        },
-        {
-            "id": 84,
-            "short": "---",
-            "target": "---",
-            "counter": 0
-        },
-        {
-            "id": 800,
-            "short": "---",
-            "target": "---",
-            "counter": 0
-        },
-        {
-            "id": 85,
-            "short": "---",
-            "target": "---",
-            "counter": 0
-        }])
+    const [linkList, setLinkList] = useState([])
     const [page, setPage] = useState(1)
     const [pageNumber, setPageNumber] = useState(0)
     const [sendLink, setSendLink] = useState('')
