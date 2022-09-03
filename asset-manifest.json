@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/shortlink-test/static/css/main.389439f4.css",
+    "main.js": "/shortlink-test/static/js/main.121f69d2.js",
+    "static/media/copy.svg": "/shortlink-test/static/media/copy.383d49c6fdc533b74ad712035abf8b2c.svg",
+    "index.html": "/shortlink-test/index.html",
+    "main.389439f4.css.map": "/shortlink-test/static/css/main.389439f4.css.map",
+    "main.121f69d2.js.map": "/shortlink-test/static/js/main.121f69d2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.389439f4.css",
+    "static/js/main.121f69d2.js"
+  ]
+}
