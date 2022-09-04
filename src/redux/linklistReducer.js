@@ -1,5 +1,4 @@
-import {createReducer} from "@reduxjs/toolkit";
-import {createAction} from "@reduxjs/toolkit";
+import {createReducer, createAction} from "@reduxjs/toolkit";
 
 const initialState = {
     order: 'desc_target',

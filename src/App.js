@@ -1,15 +1,16 @@
-import './App.css';
-import {useEffect, useState} from "react";
-import Table from "./components/Table/Table";
-import {Pagination} from "@mui/material";
-import {makeLink, setData, setPageNum} from "./asyncFunctions";
-import logoutIfNoToken from "./helpfulFunctions/logoutIfNoToken";
-import {useNavigate} from "react-router-dom";
-import logout from "./helpfulFunctions/logout";
-import {useDispatch, useSelector} from "react-redux";
-import {ReactNotifications} from "react-notifications-component";
+import './App.css'
+import {useEffect, useState} from "react"
+import Table from "./components/Table/Table"
+import {Pagination} from "@mui/material"
+import {makeLink, setData, setPageNum} from "./asyncFunctions"
+import logoutIfNoToken from "./helpfulFunctions/logoutIfNoToken"
+import {useNavigate} from "react-router-dom"
+import logout from "./helpfulFunctions/logout"
+import {useDispatch, useSelector} from "react-redux"
+import {ReactNotifications} from "react-notifications-component"
 
 function App() {
+
     const user = localStorage.getItem('user')
     const [upload, setUpload] = useState(0)
     const [linkList, setLinkList] = useState([])
@@ -17,6 +18,8 @@ function App() {
     const [pageNumber, setPageNumber] = useState(0)
     const [sendLink, setSendLink] = useState('')
     const [error, setError] = useState(false)
+
+
     const order = useSelector(state=>state.linklist.order)
 
     const dispatch = useDispatch()
@@ -25,14 +28,6 @@ function App() {
     const token = (localStorage.getItem('token') !== null
             ? localStorage.getItem('token')
             : sessionStorage.getItem('token')
-    )
-
-    const getLinks = linkList.map(link=>
-        <tr>
-            <th scope='row'>{link.target}</th>
-            <td>{link.short}</td>
-            <td>{link.counter}</td>
-        </tr>
     )
 
     const handlePageChange = (e, value) => {

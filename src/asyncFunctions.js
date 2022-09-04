@@ -1,13 +1,14 @@
 import {setAuthorised, setError, setLoginError, setToken} from "./redux/authorisationReducer";
 import {setLoading} from "./redux/linklistReducer";
+import {createLinkFaultNotification, createLinkNotification} from "./helpfulFunctions/notificationFunctions";
 
+const URL = 'http://79.143.31.216/'
 
 export const signUp = async (login, password, dispatch) => {
-    let response = await fetch(`http://79.143.31.216/register?username=${login}&password=${password}`, {
+    let response = await fetch(`${URL}register?username=${login}&password=${password}`, {
         method: 'POST'
-    });
+    }).catch(()=>{});
     if (response.ok) {
-        let json = await response.json();
         dispatch(setError(false))
     } else {
         dispatch(setError(true))
@@ -16,7 +17,7 @@ export const signUp = async (login, password, dispatch) => {
 }
 
 export const logIn = async (login, password, dispatch) => {
-    let response = await fetch("http://79.143.31.216/login", {
+    let response = await fetch(`${URL}login`, {
         body: `grant_type=&username=${login}&password=${password}&scope=&client_id=&client_secret=`,
         headers: {
             Accept: "application/json",
@@ -38,7 +39,7 @@ export const logIn = async (login, password, dispatch) => {
 
 export const setData = async (order, limit, offset, setter, token, dispatch) => {
     dispatch(setLoading(true))
-    let response = await fetch(`http://79.143.31.216/statistics?order=${order}&offset=${offset}&limit=${limit}`, {
+    let response = await fetch(`${URL}statistics?order=${order}&offset=${offset}&limit=${limit}`, {
         headers: {
             Authorization:`Bearer ${token}`
         }
@@ -46,15 +47,12 @@ export const setData = async (order, limit, offset, setter, token, dispatch) => 
     if (response.ok) {
         let json = await response.json();
         setter(json)
-    } else {
-        console.log(response)
     }
     dispatch(setLoading(false))
 }
 
 export const setPageNum = async (setter, token) => {
-    let response = await fetch(`http://79.143.31.216/statistics?
-    order=asc_short&offset=0&`, {
+    let response = await fetch(`${URL}statistics?order=asc_short&offset=0&`,{
         headers: {
             Authorization:`Bearer ${token}`
         }
@@ -62,14 +60,12 @@ export const setPageNum = async (setter, token) => {
     if (response.ok) {
         let json = await response.json();
         const pages = Math.ceil(json.length/5)
-        setter(Math.ceil(json.length/5))
-    } else {
-        console.log(response)
+        setter(pages)
     }
 }
 
 export const makeLink = async (link, token, setter) => {
-    let response = await fetch(`http://79.143.31.216/squeeze?link=${link}`, {
+    let response = await fetch(`${URL}squeeze?link=${link}`, {
         headers: {
             Accept: "application/json",
             Authorization: `Bearer ${token}`
@@ -77,10 +73,10 @@ export const makeLink = async (link, token, setter) => {
         method: "POST"
     })
     if (response.ok) {
-        let json = await response.json();
         setter(false)
+        createLinkNotification(link)
     } else {
-        console.log(response)
         setter(true)
+        createLinkFaultNotification(link)
     }
 }

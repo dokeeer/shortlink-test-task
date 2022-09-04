@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import './AuthPage.css'
-import {signUp} from "../asyncFunctions";
-import {useDispatch, useSelector} from "react-redux";
+import {signUp} from "../asyncFunctions"
+import {useDispatch, useSelector} from "react-redux"
 import { useNavigate } from 'react-router-dom'
-import redirect from "../helpfulFunctions/checkIsAuthorised";
+import redirect from "../helpfulFunctions/checkIsAuthorised"
 const SignupPage = () => {
 
     const navigate = useNavigate()
@@ -39,6 +39,7 @@ const SignupPage = () => {
                     setSuccess(true)
                     setTimeout(() => navigate('/'), 2000)
                 })
+                .catch(()=>{})
         }
         else setMatchError(true)
     }

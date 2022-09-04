@@ -59,6 +59,11 @@ thead {
     left: 75px;
 }
 
+.copy-img:hover {
+    cursor: pointer;
+}
+
+
 .table-link:hover {
     color:#21c2f8;
 }

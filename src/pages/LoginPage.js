@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect} from 'react'
 import './AuthPage.css'
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {logIn} from "../asyncFunctions";
-import {useNavigate} from "react-router-dom";
-import redirect from "../helpfulFunctions/checkIsAuthorised";
+import {useState} from "react"
+import {useDispatch, useSelector} from "react-redux"
+import {logIn} from "../asyncFunctions"
+import {useNavigate} from "react-router-dom"
+import redirect from "../helpfulFunctions/checkIsAuthorised"
 
 const LoginPage = () => {
 
@@ -63,10 +63,20 @@ const LoginPage = () => {
                     ?<div className='login-error'>Password or/and login is incorrect</div>
                     :''}
                 <form className='login-form' onSubmit={handleSubmit}>
-                    <input onChange={(e) => handleFormChange(e, 'username')} type='text' className='form_input' placeholder='Login'/>
-                    <input onChange={(e) => handleFormChange(e, 'password')} type='password' className='form_input' placeholder='Password'/>
+                    <input
+                        onChange={(e) => handleFormChange(e, 'username')}
+                        type='text' className='form_input' placeholder='Login'
+                    />
+                    <input
+                        onChange={(e) => handleFormChange(e, 'password')}
+                        type='password' className='form_input' placeholder='Password'
+                    />
                     <div className='remember-box'>
-                    <input checked={remember} onChange={(e)=>setRemember(e.target.checked)} type='checkbox' id='remember' className='remember_checkbox'/>
+                    <input
+                        checked={remember}
+                        onChange={(e)=>setRemember(e.target.checked)}
+                        type='checkbox' id='remember' className='remember_checkbox'
+                    />
                     <label htmlFor='remember' className='r'> Remember me</label>
                     </div>
                     <input type='submit' className='form_submit' value='Log in'/>
