@@ -3,7 +3,7 @@ import './AuthPage.css'
 import {useState} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import {logIn} from "../asyncFunctions"
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import redirect from "../helpfulFunctions/checkIsAuthorised"
 
 const LoginPage = () => {
@@ -82,7 +82,7 @@ const LoginPage = () => {
                     <input type='submit' className='form_submit' value='Log in'/>
                 </form>
                 <div className='signup_link-holder'>
-                    <a className='signup_link' href='/signup'>Sign up</a>
+                    <Link className='signup_link' to="/signup">Sign Up</Link>
                 </div>
             </div>
         </div>

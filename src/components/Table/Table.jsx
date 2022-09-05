@@ -59,8 +59,7 @@ const Table = (props) => {
     }
 
     const getLoading = (isLoading) => {
-        if (isLoading === true) return '...'
-        else return ''
+        if (isLoading === true) return <tr><th>...</th></tr>
     }
 
     const getSymbol = (type) => {
